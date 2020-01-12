@@ -10,11 +10,12 @@ public class ConnectionFactory {
     public static String port;
     public static String username;
     public static String password;
-    public static HashMap<String, String> databaseSelector = new HashMap<String, String>();
+    public static String db;
+    public static String driver;
 	public static java.sql.Connection doConnection() throws SQLException {
 		try {
-			Class.forName(databaseSelector.get("driver"));
-			return DriverManager.getConnection(databaseSelector.get("db")+server+":"+port+"/"+database","+ username+","+ password);
+			Class.forName(driver);
+			return DriverManager.getConnection(db+server+":"+port+"/"+database","+ username+","+ password);
 		} catch (ClassNotFoundException e) {
 			throw new SQLException(e.getException());
 		}
