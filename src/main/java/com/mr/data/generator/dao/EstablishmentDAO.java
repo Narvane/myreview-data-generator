@@ -17,6 +17,23 @@ public class EstablishmentDAO {
     
     public ArrayList<Integer> getAllDistrictsIds(){
         ArrayList<Integer> idList = new ArrayList<>();
+        
+        String sql = "SELECT * FROM dst_districts";
+		
+		try {
+			connection = ConnectionFactory.doConnection();
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				idList.add(rs.getInt("dst_id"));
+			}
+			
+			connection.close();
+			stmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         return idList;
     }
     public ArrayList<Integer> getDistrictByNames(ArrayList<String> districtNames){
@@ -27,4 +44,25 @@ public class EstablishmentDAO {
     public void getAllCnpjs(){
         
     }
+    
+    public boolean districtExists(String districtName) {
+		String sql = "SELECT dst_name FROM dst_districts WHERE dst_name = ?";
+		
+		try {
+			connection = ConnectionFactory.doConnection();
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, districtName);
+
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+			
+			connection.close();
+			stmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
