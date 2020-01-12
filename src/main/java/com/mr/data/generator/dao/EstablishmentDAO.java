@@ -59,8 +59,26 @@ public class EstablishmentDAO {
         return idList;
     }
     
-    public void getAllCnpjs(){
-        
+    public void cnpjExists(String CNPJ){
+        String sql = "SELECT est_cnpj FROM est_establishments WHERE est_cnpj = ?";
+		try {
+			connection = ConnectionFactory.doConnection();
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, CNPJ);
+				
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+			
+			connection.close();
+			stmt.close();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return false;
     }
     
     public boolean districtExists(String districtName) {
