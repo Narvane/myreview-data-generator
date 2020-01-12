@@ -6,6 +6,7 @@
 package com.mr.data.generator.dao;
 
 import com.mr.data.generator.mode.Establishment;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,11 +15,13 @@ import com.mr.data.generator.mode.Establishment;
 public class EstablishmentDAO {
     private Establishment establishment;
     
-    public void getAllDistrictsIds(){
-        
+    public ArrayList<Integer> getAllDistrictsIds(){
+        ArrayList<Integer> idList = new ArrayList<>();
+        return idList;
     }
-    public void getDistrictByName(){
-        
+    public ArrayList<Integer> getDistrictByNames(ArrayList<String> districtNames){
+        ArrayList<Integer> idList = new ArrayList<>();
+        return idList;
     }
     
     public void getAllCnpjs(){
