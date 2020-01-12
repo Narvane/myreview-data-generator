@@ -384,11 +384,11 @@ public class EstablishmentView extends javax.swing.JFrame {
     }//GEN-LAST:event_allDistrictCheckBoxActionPerformed
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
-        establishmentController.setServer(serverField.getText());
-        establishmentController.setDatabase(databaseField.getText());
-        establishmentController.setPort(portField.getText());
-        establishmentController.setUsername(usernameField.getText());
-        establishmentController.setPassword(passwordField.getText());
+        ConnectionFactory.server = serverField.getText();
+        ConnectionFactory.database = databaseField.getText();
+        ConnectionFactory.port = portField.getText();
+        ConnectionFactory.username = usernameField.getText();
+        ConnectionFactory.password = passwordField.getText();
         establishmentController.setDb(choosenDb());
         establishmentController.setNamesList(Collections.list(nameListModel.elements()));
         establishmentController.setAfternameList(Collections.list(afternameListModel.elements()));
@@ -443,8 +443,12 @@ public class EstablishmentView extends javax.swing.JFrame {
     }//GEN-LAST:event_postgresRadioActionPerformed
     private String choosenDb(){
         if(mysqlRadio.isSelected()){
+	    ConnectionFactory.db = "jdbc:mysql://";
+	    ConnectionFactory.driver = "com.mysql.jdbc.Driver";
             return "mysql";
         }else{
+	    ConnectionFactory.db = "jdbc:postgres://";
+	    ConnectionFactory.driver = "com.postgres.jdbc.Driver";
             return "postgres";
         }
     }
