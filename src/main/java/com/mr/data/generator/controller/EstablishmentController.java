@@ -77,6 +77,10 @@ public class EstablishmentController {
 	int a = r.nextInt(8000000)+1000000;
 	int b = r2.nextInt(8000000)+1000000;
 	String total = a +""+ b;
+	    
+	if(establishmentDAO.cnpjExists(total)){
+		return randomCnpj();
+	}
 	return total;
     }
     public Integer randomDistrict(){
