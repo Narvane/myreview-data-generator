@@ -19,14 +19,8 @@ import java.util.Random;
  */
 public class EstablishmentController {
     
-    EstablishmentDAO establishmentDAO = new EstablishmentDAO();
+    private EstablishmentDAO establishmentDAO = new EstablishmentDAO();
     
-    private String db;
-    private String server;
-    private String database;
-    private String port;
-    private String username;
-    private String password;
     private ArrayList<String> namesList = new ArrayList<>();
     private ArrayList<String> afternameList = new ArrayList<>();
     private ArrayList<String> sqlList = new ArrayList<>();
@@ -102,62 +96,9 @@ public class EstablishmentController {
 	return Double.valueOf(join);
     }
     public void sqlSubscribe(Establishment establishment){
-        if(db=="mysql"){
-                sqlList.add("INSERT INTO est_establishments"
-                + "(est_name, est_cnpj, est_description, dst_district, est_number, est_stars) "
-                + "VALUES '"+establishment.getName()+"', '"+establishment.getCnpj()+"', '"+establishment.getDescription()+"', "+establishment.getDistrict()+", "+establishment.getNumber()+", "+establishment.getStars()+";");
-            }else{
-                sqlList.add("INSERT INTO est_establishments"
-                + "VALUES ('"+establishment.getName()+"', '"+establishment.getCnpj()+"', '"+establishment.getDescription()+"', "+establishment.getDistrict()+", "+establishment.getNumber()+", "+establishment.getStars()+");");
-            }
-    }
-
-    public String getDb() {
-        return db;
-    }
-
-    public void setDb(String db) {
-        this.db = db;
-    }
-
-    public String getServer() {
-        return server;
-    }
-
-    public void setServer(String server) {
-        this.server = server;
-    }
-
-    public String getDatabase() {
-        return database;
-    }
-
-    public void setDatabase(String database) {
-        this.database = database;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        sqlList.add("INSERT INTO est_establishments"
+            + "(est_name, est_cnpj, est_description, dst_district, est_number, est_stars) "
+            + "VALUES '"+establishment.getName()+"', '"+establishment.getCnpj()+"', '"+establishment.getDescription()+"', "+establishment.getDistrict()+", "+establishment.getNumber()+", "+establishment.getStars()+";");
     }
 
     public ArrayList<String> getNamesList() {

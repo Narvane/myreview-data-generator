@@ -9,6 +9,7 @@ import com.mr.data.generator.connection.ConnectionFactory;
 import com.mr.data.generator.controller.EstablishmentController;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -20,25 +21,103 @@ import javax.swing.UIManager.LookAndFeelInfo;
 public class EstablishmentView extends javax.swing.JFrame {
 
     private EstablishmentController establishmentController = new EstablishmentController();
-    
+
     DefaultListModel nameListModel = new DefaultListModel();
     DefaultListModel afternameListModel = new DefaultListModel();
     DefaultListModel districtListModel = new DefaultListModel();
     DefaultListModel sqlListModel = new DefaultListModel();
+
     public EstablishmentView() {
         try {
-			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-				if("Windows".equals(info.getName())) {
-					UIManager.setLookAndFeel(info.getClassName());
-					
-					break;
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         initComponents();
-        
+        List<String> names = new ArrayList<>();
+		
+		String s1 = "Delicias";
+		String s2 = "Sabor";
+		String s3 = "Tempero";
+		String s4 = "Taste";
+		String s5 = "Bom";
+		String s6 = "Delicioso";
+		String s7 = "Fantastico";
+		String s8 = "Guloseima";
+		String s9 = "Gula";
+		String s10 = "Sensação";
+		String s11 = "Tropical";
+		String s12 = "Fermento";
+		String s13 = "Fabuloso";
+		String s14 = "Delicioso";
+		String s15 = "Glamuroso";
+		String s16 = "Cremoso";
+		String s17 = "Incrível";
+		
+                names.add(s1);
+		names.add(s2);
+		names.add(s3);
+		names.add(s4);
+		names.add(s5);
+		names.add(s6);
+		names.add(s7);
+		names.add(s8);
+		names.add(s9);
+		names.add(s10);
+		names.add(s11);
+		names.add(s12);
+		names.add(s13);
+		names.add(s14);
+		names.add(s15);
+		names.add(s16);
+		names.add(s17);
+                
+                names.forEach((iterate) -> {
+                    nameListModel.addElement(iterate);
+                });
+                nameList.setModel(nameListModel);
+                
+		String s18 = "Caseiras";
+		String s19 = "Sabor";
+		String s20 = "Gula";
+		String s21 = "Tropical";
+		String s22 = "Sensação";
+		String s23 = "Fermento";
+		String s24 = "da Casa";
+		String s25 = "do Mundo";
+		String s26 = "do Jardim";
+		String s27 = "do Campo";
+		String s28 = "do Horizonte";
+		String s29 = "do Brasil";
+		String s30 = "do Mar";
+		String s31 = "do Lar";
+		
+		List<String> afternames = new ArrayList<>();
+		afternames.add(s18);
+		afternames.add(s19);
+		afternames.add(s20);
+		afternames.add(s21);
+		afternames.add(s22);
+		afternames.add(s23);
+		afternames.add(s24);
+		afternames.add(s25);
+		afternames.add(s26);
+		afternames.add(s27);
+		afternames.add(s28);
+		afternames.add(s29);
+		afternames.add(s30);
+		afternames.add(s31);
+                
+                afternames.forEach((iterate) -> {
+                    afternameListModel.addElement(iterate);
+                });
+                afternameList.setModel(afternameListModel);
     }
 
     /**
@@ -98,25 +177,10 @@ public class EstablishmentView extends javax.swing.JFrame {
         sqlTextArea.setRows(5);
         jScrollPane1.setViewportView(sqlTextArea);
 
-        nameList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Delicias", "Sabor", "Tempero", "Taste", "Bom", "Delicioso", "Fantastico", "Guloseima", "Gula", "Sensação", "Tropical", "Fermento", "Fabuloso", "Delicioso", "Glamuroso", "Cremoso", "Incrível" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(nameList);
 
-        afternameList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Caseiras", "Sabor", "Gula", "Tropical", "Sensação", "Fermento", "da Casa", "do Mundo", "do Jardim", "do Campo", "do Horizonte", "do Brasil", "do Mar", "do Lar" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(afternameList);
 
-        districtList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Forquilhas" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane4.setViewportView(districtList);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -260,7 +324,7 @@ public class EstablishmentView extends javax.swing.JFrame {
                                         .addComponent(deleteNameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(jScrollPane2)
                                     .addComponent(nameLabel)
-                                    .addComponent(nameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(nameInput))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(afternameLabel)
@@ -278,7 +342,7 @@ public class EstablishmentView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(districtInput)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(districtLabel)
                                         .addGap(0, 0, Short.MAX_VALUE))
@@ -386,20 +450,19 @@ public class EstablishmentView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNameButtonActionPerformed
-        
+
         nameListModel.addElement(nameInput.getText());
-        nameList.setModel(nameListModel);
         nameInput.setText("");
-        
+
     }//GEN-LAST:event_addNameButtonActionPerformed
 
     private void allDistrictCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allDistrictCheckBoxActionPerformed
-        if(allDistrictCheckBox.isSelected()){
+        if (allDistrictCheckBox.isSelected()) {
             districtList.setEnabled(false);
-        }else{
+        } else {
             districtList.setEnabled(true);
         }
-        
+
     }//GEN-LAST:event_allDistrictCheckBoxActionPerformed
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
@@ -408,21 +471,26 @@ public class EstablishmentView extends javax.swing.JFrame {
         ConnectionFactory.port = portField.getText();
         ConnectionFactory.username = usernameField.getText();
         ConnectionFactory.password = passwordField.getText();
-        
-        establishmentController.setDb(choosenDb());
+        choosenDb();
         establishmentController.setNamesList(Collections.list(nameListModel.elements()));
         establishmentController.setAfternameList(Collections.list(afternameListModel.elements()));
         System.out.println(Collections.list(nameListModel.elements()));
-        if(!allDistrictCheckBox.isSelected()){
+        if (!allDistrictCheckBox.isSelected()) {
             establishmentController.setAllDistricts(false);
             establishmentController.setDistrictNames(Collections.list(districtListModel.elements()));
-        }else{
+        } else {
             establishmentController.setAllDistricts(true);
         }
         for (int i = 0; i < Integer.parseInt(amountInput.getText()); i++) {
             establishmentController.generateEstablishments();
         }
-        sqlTextArea.setText(establishmentController.getSqlList().toString());
+        
+        String formatedInsertes = "";
+        for (int i = 0; i < establishmentController.getSqlList().size(); i++) {
+            formatedInsertes += establishmentController.getSqlList().get(i)+"\n";
+        }
+        
+        sqlTextArea.setText(formatedInsertes);
     }//GEN-LAST:event_generateButtonActionPerformed
 
     private void mysqlRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mysqlRadioActionPerformed
@@ -441,7 +509,6 @@ public class EstablishmentView extends javax.swing.JFrame {
 
     private void addAfternameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAfternameButtonActionPerformed
         afternameListModel.addElement(afternameInput.getText());
-        afternameList.setModel(afternameListModel);
         afternameInput.setText("");
     }//GEN-LAST:event_addAfternameButtonActionPerformed
 
@@ -463,19 +530,16 @@ public class EstablishmentView extends javax.swing.JFrame {
         mysqlRadio.setSelected(false);
         postgresRadio.setSelected(true);
     }//GEN-LAST:event_postgresRadioActionPerformed
-    private String choosenDb(){
-        if(mysqlRadio.isSelected()){
-	    ConnectionFactory.db = "jdbc:mysql://";
-	    ConnectionFactory.driver = "com.mysql.jdbc.Driver";
-            return "mysql";
-        }else{
-	    ConnectionFactory.db = "jdbc:postgres://";
-	    ConnectionFactory.driver = "com.postgres.jdbc.Driver";
-            return "postgres";
+    private void choosenDb() {
+        if (mysqlRadio.isSelected()) {
+            ConnectionFactory.db = "jdbc:mysql://";
+            ConnectionFactory.driver = "com.mysql.jdbc.Driver";
+        } else {
+            ConnectionFactory.db = "jdbc:postgresql://";
+            ConnectionFactory.driver = "org.postgresql.Driver";
         }
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
