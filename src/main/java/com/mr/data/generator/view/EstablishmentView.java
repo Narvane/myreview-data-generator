@@ -5,7 +5,9 @@
  */
 package com.mr.data.generator.view;
 
+import com.mr.data.generator.connection.ConnectionFactory;
 import com.mr.data.generator.controller.EstablishmentController;
+import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.DefaultListModel;
 import javax.swing.UIManager;
@@ -17,7 +19,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
  */
 public class EstablishmentView extends javax.swing.JFrame {
 
-    private EstablishmentController establishmentController;
+    private EstablishmentController establishmentController = new EstablishmentController();
     
     DefaultListModel nameListModel = new DefaultListModel();
     DefaultListModel afternameListModel = new DefaultListModel();
@@ -110,6 +112,11 @@ public class EstablishmentView extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(afternameList);
 
+        districtList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Forquilhas" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane4.setViewportView(districtList);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -163,6 +170,8 @@ public class EstablishmentView extends javax.swing.JFrame {
             }
         });
 
+        amountInput.setText("10");
+
         amountLabel.setLabelFor(amountInput);
         amountLabel.setText("Amount");
 
@@ -173,11 +182,16 @@ public class EstablishmentView extends javax.swing.JFrame {
             }
         });
 
+        serverField.setText("localhost");
         serverField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 serverFieldActionPerformed(evt);
             }
         });
+
+        databaseField.setText("myreview");
+
+        portField.setText("3306");
 
         portLabel.setLabelFor(portField);
         portLabel.setText("Port");
@@ -187,6 +201,10 @@ public class EstablishmentView extends javax.swing.JFrame {
 
         serverLabel.setLabelFor(serverField);
         serverLabel.setText("Server");
+
+        passwordField.setText("root");
+
+        usernameField.setText("root");
 
         usernameLabel.setText("Username");
 
@@ -209,6 +227,7 @@ public class EstablishmentView extends javax.swing.JFrame {
             }
         });
 
+        mysqlRadio.setSelected(true);
         mysqlRadio.setText("MySql");
         mysqlRadio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,7 +286,7 @@ public class EstablishmentView extends javax.swing.JFrame {
                                         .addGap(1, 1, 1)
                                         .addComponent(addDistrictButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(deleteDistrictButton, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))))
+                                        .addComponent(deleteDistrictButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(serverLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -389,18 +408,21 @@ public class EstablishmentView extends javax.swing.JFrame {
         ConnectionFactory.port = portField.getText();
         ConnectionFactory.username = usernameField.getText();
         ConnectionFactory.password = passwordField.getText();
+        
         establishmentController.setDb(choosenDb());
         establishmentController.setNamesList(Collections.list(nameListModel.elements()));
         establishmentController.setAfternameList(Collections.list(afternameListModel.elements()));
+        System.out.println(Collections.list(nameListModel.elements()));
         if(!allDistrictCheckBox.isSelected()){
             establishmentController.setAllDistricts(false);
             establishmentController.setDistrictNames(Collections.list(districtListModel.elements()));
         }else{
             establishmentController.setAllDistricts(true);
         }
-        for (int i = 0; Integer.parseInt(amountInput.getText()) < 10; i++) {
+        for (int i = 0; i < Integer.parseInt(amountInput.getText()); i++) {
             establishmentController.generateEstablishments();
         }
+        sqlTextArea.setText(establishmentController.getSqlList().toString());
     }//GEN-LAST:event_generateButtonActionPerformed
 
     private void mysqlRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mysqlRadioActionPerformed
@@ -452,6 +474,7 @@ public class EstablishmentView extends javax.swing.JFrame {
             return "postgres";
         }
     }
+    
     
     /**
      * @param args the command line arguments

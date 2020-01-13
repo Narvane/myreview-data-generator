@@ -36,7 +36,6 @@ public class EstablishmentController {
     
     
     public void generateEstablishments(){
-        prepareConnection();
         ArrayList<Establishment> establishmentList = new ArrayList<>();
         Establishment establishment = new Establishment();
             establishment.setName(randomName());
@@ -45,19 +44,11 @@ public class EstablishmentController {
             establishment.setDistrict(randomDistrict());
             establishment.setNumber(randomNumber());
             establishment.setStars(randomStars());
+        establishmentDAO.generateEstablishment(establishment);
         sqlSubscribe(establishment);
         establishmentList.add(establishment);
     }
     
-    public void prepareConnection(){
-        ConnectionFactory.server = this.server;
-        ConnectionFactory.database = this.database;
-        ConnectionFactory.port = this.port;
-        ConnectionFactory.username = this.username;
-        ConnectionFactory.password = this.password;
-        
-        //MySql or Postgres
-    }
     
     public String randomName(){
 	Random r = new Random();
@@ -103,7 +94,7 @@ public class EstablishmentController {
         descriptions.add("Mexican Restaurant");
         descriptions.add("Fast Food");
         descriptions.add("Gourmet");
-        return descriptions.get(r.nextInt());
+        return descriptions.get(r.nextInt(4));
     }
     public Double randomStars(){
             Random r = new Random();
@@ -111,7 +102,7 @@ public class EstablishmentController {
 	return Double.valueOf(join);
     }
     public void sqlSubscribe(Establishment establishment){
-        if(db=="Mysql"){
+        if(db=="mysql"){
                 sqlList.add("INSERT INTO est_establishments"
                 + "(est_name, est_cnpj, est_description, dst_district, est_number, est_stars) "
                 + "VALUES '"+establishment.getName()+"', '"+establishment.getCnpj()+"', '"+establishment.getDescription()+"', "+establishment.getDistrict()+", "+establishment.getNumber()+", "+establishment.getStars()+";");
